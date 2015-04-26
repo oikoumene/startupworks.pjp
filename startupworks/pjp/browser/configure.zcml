@@ -1,0 +1,66 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="startupworks.pjp">
+
+    <browser:page
+        name="homeview"
+        for="*"
+        layer="zope.interface.Interface"
+        class=".views.HomeView"
+        template="templates/home.pt"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="pilgrimagestepsview"
+        for="*"
+        layer="zope.interface.Interface"
+        class=".views.PilgrimageStepsView"
+        template="templates/pilgrimagesteps.pt"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="pilgrimagestepview"
+        for="*"
+        layer="zope.interface.Interface"
+        class=".views.PilgrimageStepView"
+        template="templates/pilgrimagestep.pt"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="resources"
+        for="*"
+        layer="zope.interface.Interface"
+        class=".views.PilgrimageStepResourcesView"
+        template="templates/resources.pt"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="startupworks.pjp.base"
+        for="*"
+        template="templates/base.pt"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="startupworks.pjp.widgets"
+        for="*"
+        template="templates/widgets.pt"
+        permission="zope2.View"
+    />
+
+    <browser:view name="api+upvote" for="*" class=".api.ApiUpvoteView" permission="zope.Public"/>
+    <browser:view name="api+resources+videos" for="*" class=".api.ApiVideosPaginate" permission="zope.Public"/>
+    <browser:view name="api+resources+sounds" for="*" class=".api.ApiSoundsPaginate" permission="zope.Public"/>
+    <browser:view name="api+resources+documents" for="*" class=".api.ApiDocumentsPaginate" permission="zope.Public"/>
+    <browser:view name="api+resources+add" for="*" class=".api.ApiResourcesAdd" permission="zope.Public"/>
+    <browser:view name="api+comments" for="*" class=".api.ApiCommentsPaginate" permission="zope.Public"/>
+    <browser:view name="api+comments+add" for="*" class=".api.ApiCommentsAdd" permission="zope.Public"/>
+
+    <browser:resourceDirectory name="images" directory="ui/images"/>
+    <browser:resourceDirectory name="stylesheets" directory="ui/stylesheets"/>
+    <browser:resourceDirectory name="js" directory="ui/js"/>
+    <browser:resourceDirectory name="bower_components" directory="ui/bower_components"/>
+    <browser:resourceDirectory name="fancybox" directory="ui/fancybox"/>
+    <browser:resourceDirectory name="slick" directory="ui/slick"/>
+
+</configure>

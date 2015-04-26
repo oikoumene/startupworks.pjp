@@ -1,0 +1,91 @@
+<metal:page use-macro="view/context/@@startupworks.pjp.base/base">
+<metal:page metal:fill-slot="content">
+
+    <div class="off-canvas-wrap" data-offcanvas>
+
+        <metal:page use-macro="view/context/@@startupworks.pjp.widgets/sidebar"></metal:page>
+
+        <div class="inner-wrap">
+            <div class="seam-prevention">
+
+                <header class="options-header white-bg">
+                    <div class="row">
+                        <div class="columns small-12 text-center">
+                            <div class="logo"><a href=""><span class="access">Pilgrimage of Peace and Justice</span></a></div>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="white-bg">
+                    <div class="row">
+                        <div class="columns small-12 text-center animated fadeIn">
+                            <div class="big-circle-slider">
+                                <metal:page tal:repeat="step view/pilgrimage_steps">
+                                    <div tal:define="classes string:circle-${step/step_number_text} ${step/colour}-circle" tal:attributes="class classes">
+                                        <div class="resizer-wrapper">
+                                            <a tal:attributes="href step/url">
+                                                <div class="slide-circle">
+                                                    <div class="inner-circle">
+                                                        <div class="inner-content">
+                                                            <div class="inner-centered">
+                                                                <h2><span tal:content="step/step_number"></span> <br><br><span tal:content="step/title"></span></h2>
+                                                                <div class="circle-icon">
+                                                                    <img tal:attributes="src string:${static_root}/++resource++images/step${step/step_number}.png; alt step/title">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </metal:page>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sc-wrapper white-bg">
+                    <div class="row">
+                        <div class="columns small-12 text-center animated fadeIn">
+                            <div class="little-circle-slider">
+                                <metal:page tal:repeat="step view/pilgrimage_steps_splitted">
+                                    <div tal:define="classes string:circle-${step/step_number_text} ${step/colour}-circle" tal:attributes="class classes">
+                                        <a tal:attributes="href step/url">
+                                            <div class="slide-circle">
+                                                <div class="inner-circle">
+                                                    <div class="inner-content">
+                                                        <div class="inner-centered">
+                                                            <h2><span tal:content="step/step_number"></span> <br><br><span tal:content="step/title"></span></h2>
+                                                            <div class="circle-icon">
+                                                                <img tal:attributes="src string:${static_root}/++resource++images/step${step/step_number}.png; alt step/title">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </metal:page>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="small-slider-cover white-bg">
+                    <div class="row">
+                        <div class="small-12 columns text-center">
+                            <a href="" class="button tiny more-circles">Show More</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <metal:page use-macro="view/context/@@startupworks.pjp.widgets/footer"></metal:page>
+
+        </div>
+
+    </div>
+
+</metal:page>
+</metal:page>

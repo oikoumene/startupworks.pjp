@@ -1,0 +1,195 @@
+<metal:page use-macro="view/context/@@startupworks.pjp.base/base">
+<metal:page metal:fill-slot="content">
+    <div class="off-canvas-wrap" data-offcanvas>
+
+        <metal:page use-macro="view/context/@@startupworks.pjp.widgets/sidebar"></metal:page>
+
+        <div class="inner-wrap">
+
+            <div tal:define="classes string:${context/colour}-page animated fadeIn" tal:attributes="class classes">
+
+                <div class="seam-prevention">
+
+                    <header class="content-header white-bg">
+                        <div class="row">
+                            <div class="columns small-12 text-center">
+                                <div class="logo">
+                                    <img tal:attributes="src string:${static_root}/++resource++images/step${context/step_number}.png; alt context/title">
+                                </div>
+
+                                <h1 tal:content="context/title"></h1>
+                                <p>Resources</p>
+                            </div>
+                        </div>
+                    </header>
+
+                    <section class="content-strip white-bg">
+                        <div class="row">
+                            <div class="columns small-12 text-center">
+                                <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
+                                <h2>Videos</h2>
+                                <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                                    <li tal:repeat="video view/videos_paginated">
+                                        <h3 tal:content="video/title"></h3>
+                                        <div>
+                                            <a tal:attributes="href video/url_youtube_embedded" class="video-links fancybox.iframe">
+                                                <img tal:attributes="src video/url_youtube_bg_img" alt="">
+                                            </a>
+                                        </div>
+                                        <ul class="no-bullet icons-box">
+                                            <span tal:condition="video/wcc_user" tal:omit-tag="">
+                                                <li class="user-icon wcc-user">
+                                                    <img tal:attributes="src string:${static_root}/++resource++images/wcc-user-icon.png" alt="">
+                                                    <span class="access">User</span>
+                                                </li>
+                                            </span>
+                                            <span tal:condition="not: video/wcc_user" tal:omit-tag="">
+                                                <li class="user-icon unknown-user"><i class="fa fa-user"></i><span class="access">User</span></li>
+                                            </span>
+                                            <li class="heart-icon">
+                                                <a tal:attributes="data-votable video/UID"><i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="heart-count" tal:attributes="data-votes-count video/UID" tal:content="video/votes_count"></li>
+                                        </ul>
+                                        <p tal:content="video/description"></p>
+                                    </li>
+                                </ul>
+                                <a tal:condition="view/videos_next_page"
+                                   tal:attributes="data-videos-pagination-next-page view/videos_next_page; data-id view/UID"
+                                   class="button tiny see-more-videos">See More</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-strip alt-strip">
+                        <div class="row">
+                            <div class="columns small-12 text-center">
+                                <div class="resource-icon"><i class="fa fa-soundcloud"></i></div>
+                                <h2>Sounds</h2>
+                                <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                                    <li tal:repeat="sound view/sounds_paginated">
+                                        <h3 tal:content="sound/title"></h3>
+                                        <div>
+                                            <iframe tal:attributes="src sound/soundcloud_url_embedded" width="100%" height="166" scrolling="no" frameborder="no"></iframe>
+                                        </div>
+                                        <ul class="no-bullet icons-box">
+                                            <span tal:condition="sound/wcc_user" tal:omit-tag="">
+                                                <li class="user-icon wcc-user">
+                                                    <img tal:attributes="src string:${static_root}/++resource++images/wcc-user-icon.png" alt="">
+                                                    <span class="access">User</span>
+                                                </li>
+                                            </span>
+                                            <span tal:condition="not: sound/wcc_user" tal:omit-tag="">
+                                                <li class="user-icon unknown-user"><i class="fa fa-user"></i><span class="access">User</span></li>
+                                            </span>
+                                            <li class="heart-icon">
+                                                <a tal:attributes="data-votable sound/UID"><i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="heart-count" tal:attributes="data-votes-count sound/UID" tal:content="sound/votes_count"></li>
+                                        </ul>
+                                        <p tal:content="sound/description"></p>
+                                    </li>
+                                </ul>
+                                <a tal:condition="view/sounds_next_page"
+                                   tal:attributes="data-sounds-pagination-next-page view/sounds_next_page; data-id view/UID"
+                                   class="button tiny see-more-sounds">See More</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-strip white-bg">
+                        <div class="row">
+                            <div class="columns small-12 text-center">
+                                <div class="resource-icon"><i class="fa fa-file-o"></i></div>
+                                <h2>Documents</h2>
+                                <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                                    <li tal:repeat="document view/documents_paginated">
+                                        <h3 tal:content="document/title"></h3>
+                                        <div class="doc-holder">
+                                            <a tal:attributes="href document/download_url">
+                                                <img tal:define="thumb document/display_thumb_url" tal:condition="thumb" tal:attributes="src thumb" alt="">
+                                                <img tal:define="thumb document/display_thumb_url" tal:condition="not: thumb"
+                                                     tal:attributes="src string:${static_root}/++resource++images/doc-holder.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <ul class="no-bullet icons-box">
+                                            <span tal:condition="document/wcc_user" tal:omit-tag="">
+                                                <li class="user-icon wcc-user">
+                                                    <img tal:attributes="src string:${static_root}/++resource++images/wcc-user-icon.png" alt="">
+                                                    <span class="access">User</span>
+                                                </li>
+                                            </span>
+                                            <span tal:condition="not: document/wcc_user" tal:omit-tag="">
+                                                <li class="user-icon unknown-user"><i class="fa fa-user"></i><span class="access">User</span></li>
+                                            </span>
+                                            <li class="heart-icon">
+                                                <a tal:attributes="data-votable document/UID"><i class="fa fa-heart"></i></a>
+                                            </li>
+                                            <li class="heart-count" tal:attributes="data-votes-count document/UID" tal:content="document/votes_count"></li>
+                                        </ul>
+                                        <p tal:content="document/description"></p>
+                                    </li>
+                                </ul>
+                                <a tal:condition="view/documents_next_page"
+                                   tal:attributes="data-documents-pagination-next-page view/documents_next_page; data-id view/UID"
+                                   class="button tiny see-more-documents">See More</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-strip grey-strip add-resource-strip">
+                        <div class="row">
+                            <div class="columns small-12 text-center">
+                                <div href="" class="action-button title-button"><span class="ab-circle">+</span><br><span class="access">Add a resource</span></div>
+                                <h2>Add a Resource</h2>
+                                <div data-success-message=""></div>
+                                <form tal:attributes="data-id view/UID" class="add-resource-form">
+                                    <ul class="small-block-grid-1 medium-block-grid-3">
+                                        <li>
+                                            <label for="">Name</label>
+                                            <input data-id="name" type="text">
+                                        </li>
+                                        <li>
+                                            <label for="">Email</label>
+                                            <input data-id="email" type="email">
+                                        </li>
+                                        <li>
+                                            <label for="">Your church</label>
+                                            <input data-id="church" type="text">
+                                        </li>
+                                        <li>
+                                            <label for="">Video</label>
+                                            <input data-id="video" type="text">
+                                        </li>
+                                        <li>
+                                            <label for="">Audio</label>
+                                            <input data-id="audio" type="text">
+                                        </li>
+                                        <li>
+                                            <label for="">Document</label>
+                                            <input data-id="document" type="file">
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <label for="">Message</label>
+                                        <textarea data-id="message" name="" id="" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div>
+                                        <div class="button tiny">Submit</div>
+                                        <span data-warning=""></span>
+                                    </div>
+                                </form>
+                                <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text">Back to top</span></a>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                <metal:page use-macro="view/context/@@startupworks.pjp.widgets/footer"></metal:page>
+
+            </div>
+        </div>
+    </div>
+
+</metal:page>
+</metal:page>

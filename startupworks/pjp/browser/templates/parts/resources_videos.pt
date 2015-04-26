@@ -1,0 +1,26 @@
+<span tal:omit-tag="" tal:define="global static_root context/@@plone_portal_state/navigation_root_url"/>
+
+<li tal:repeat="video view/videos_paginated" class="animated fadeInRight">
+    <h3 tal:content="video/title"></h3>
+    <div>
+        <a tal:attributes="href video/url_youtube_embedded" class="video-links fancybox.iframe">
+            <img tal:attributes="src video/url_youtube_bg_img" alt="">
+        </a>
+    </div>
+    <ul class="no-bullet icons-box">
+        <span tal:condition="video/wcc_user" tal:omit-tag="">
+            <li class="user-icon wcc-user">
+                <img tal:attributes="src string:${static_root}/++resource++images/wcc-user-icon.png" alt="">
+                <span class="access">User</span>
+            </li>
+        </span>
+        <span tal:condition="not: video/wcc_user" tal:omit-tag="">
+            <li class="user-icon unknown-user"><i class="fa fa-user"></i><span class="access">User</span></li>
+        </span>
+        <li class="heart-icon">
+            <a tal:attributes="data-votable video/UID"><i class="fa fa-heart"></i></a>
+        </li>
+        <li class="heart-count" tal:attributes="data-votes-count video/UID" tal:content="video/votes_count"></li>
+    </ul>
+    <p tal:content="video/description"></p>
+</li>

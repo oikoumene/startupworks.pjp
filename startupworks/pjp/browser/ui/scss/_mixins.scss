@@ -1,0 +1,37 @@
+// Custom mixins
+
+@mixin alpha-attribute($attribute, $color, $background) {
+	$percent: alpha($color) * 100%;
+	$opaque: opacify($color, 1);
+	$solid-color: mix($opaque, $background, $percent);
+	#{$attribute}: $solid-color;
+	#{$attribute}: $color;
+}
+
+@mixin font-smoothing($value: antialiased) {
+	@if $value == antialiased {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	@else {
+		-webkit-font-smoothing: subpixel-antialiased;
+		-moz-osx-font-smoothing: auto;
+	}
+}
+
+@mixin transition($properties: all, $duration: .3s, $easing: ease-out) {
+	@if length($properties) > 1 {
+		transition-property: $properties;
+		transition-duration: $duration;
+		transition-timing-function: $easing;
+	} @else {
+		transition: $properties $duration $easing;
+	}
+}
+
+// Retina Mixin
+@mixin retina($min-pixel-ratio: 2) {
+	@media screen and (-webkit-min-device-pixel-ratio: $min-pixel-ratio) {
+		@content;
+	}
+}

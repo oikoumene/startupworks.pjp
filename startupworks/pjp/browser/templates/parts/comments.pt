@@ -1,0 +1,35 @@
+<span tal:omit-tag="" tal:define="global static_root context/@@plone_portal_state/navigation_root_url"/>
+
+<li class="animated fadeInRight" tal:repeat="comment view/comments_paginated">
+    <div class="cl-image-wrapper">
+        <span class="cl-image"
+              tal:define="image comment/display_image_url"
+              tal:condition="image"
+              tal:attributes="style string:background-image:url(${image});">
+        </span>
+        <span class="cl-image"
+              tal:define="image comment/display_image_url"
+              tal:condition="not: image"
+              tal:attributes="style string:background-image:url(${static_root}/++resource++images/mussel.png);">
+        </span>
+        <span class="cl-image-mask">
+            <img tal:attributes="src string:${static_root}/++resource++images/circle-mask.png"
+                 alt="Circle Mask">
+        </span>
+        <span class="quotes">
+            <img tal:attributes="src string:${static_root}/++resource++images/quotes.png"
+                 alt="Quotes">
+        </span>
+    </div>
+    <div class="cl-details">
+        <div class="heart-box">
+            <a tal:attributes="data-votable comment/UID"><i class="fa fa-heart"></i></a>
+            <span class="heart-number" tal:attributes="data-votes-count comment/UID" tal:content="comment/votes_count"></span>
+        </div>
+        <h4 tal:content="comment/title"></h4>
+        <p tal:content="comment/datetime_added"></p>
+    </div>
+    <div class="cl-text">
+        <p tal:content="comment/message"></p>
+    </div>
+</li>

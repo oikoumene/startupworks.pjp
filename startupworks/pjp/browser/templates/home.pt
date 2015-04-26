@@ -1,0 +1,31 @@
+<metal:page use-macro="view/context/@@startupworks.pjp.base/base">
+<metal:page metal:fill-slot="content">
+
+    <div class="seam-prevention">
+
+        <header class="welcome-header white-bg">
+            <div class="row">
+                <div class="columns small-12 text-center">
+                    <div class="logo"></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="white-bg">
+            <div class="row">
+                <div class="columns small-12 text-center welcome-page">
+                    <h2 class="lined" tal:content="context/Title"></h2>
+
+                    <div tal:omit-tag="" tal:content="structure context/CookedBody"></div>
+
+                    <a tal:attributes="href view/pilgrimage_steps_url" class="button tiny">Let's Go</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <metal:page use-macro="view/context/@@startupworks.pjp.widgets/footer"></metal:page>
+
+</metal:page>
+</metal:page>

@@ -1,0 +1,61 @@
+<metal:page define-macro="footer">
+    <footer class="page-footer text-center animated fadeIn">
+        <div class="row">
+            <div class="columns small-12 medium-6 medium-text-left">
+                <ul class="no-bullet">
+                    <li class="copyright">&copy; Copyright <span tal:content="view/current_year"></span> World Council of Churches</li>
+                    <li class="tandc"><a href="http://www.oikoumene.org/en/conditions-for-use">Conditions of Use &amp; Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="columns small-12 medium-6 medium-text-right">
+                <ul class="no-bullet">
+                    <li class="initiative"><a href="http://www.oikoumene.org"><img tal:define="root context/@@plone_portal_state/navigation_root_url" tal:attributes="src string:${static_root}/++resource++images/wcc-icon-white.png" alt="The World Council of Churches"></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</metal:page>
+
+<metal:page define-macro="sidebar">
+    <div class="fixed off-canvas-fixed">
+        <a class="exit-off-canvas"></a>
+        <aside class="left-off-canvas-menu">
+            <ul class="no-bullet side-nav-list">
+                <li><a tal:attributes="href view/pilgrimage_steps_url">Home</a></li>
+
+                <div tal:omit-tag="" tal:repeat="step view/pilgrimage_steps">
+                    <li tal:define="classes string:menu-step-${step/step_number_text}" tal:attributes="class classes">
+                        <a tal:attributes="href step/url">
+                            <span tal:content="step/step_number"></span>.
+                            <span tal:content="step/title"></span>
+                        </a>
+                    </li>
+                </div>
+
+                <li class="menu-wcc"><a href="http://www.oikoumene.org/"><span class="access">World Council of Churches</span></a></li>
+                <li><a href="http://www.oikoumene.org/en/contact-wcc" target="_blank">Contact us</a></li>
+
+                <li tal:repeat="file view/menu_static_files">
+                    <a tal:attributes="href file/download_url">
+                        <span tal:content="file/title"></span>
+                    </a>
+                </li>
+
+            </ul>
+        </aside>
+        <ul class="fixed-links no-bullet">
+            <li><a href="" class="left-off-canvas-toggle"><span class="access">Menu</span><i class="fa fa-bars"></i></a></li>
+            <li tal:repeat="link view/social_media_links">
+                <a target="_blank" tal:attributes="href link/url">
+                    <i tal:define="classes string:fa ${link/icon}" tal:attributes="class classes">
+                        <span class="access"></span>
+                    </i>
+                </a>
+            </li>
+        </ul>
+        <metal:page tal:condition="view/show_sidebar_notice">
+            <div class="nav-notice nn-hidden"><div class="notice-inner">Click here to navigate</div></div>
+            <div class="socmed-notice nn-hidden"><div class="notice-inner">Share</div></div>
+        </metal:page>
+    </div>
+</metal:page>

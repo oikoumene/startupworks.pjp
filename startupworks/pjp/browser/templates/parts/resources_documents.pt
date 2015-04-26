@@ -1,0 +1,28 @@
+<span tal:omit-tag="" tal:define="global static_root context/@@plone_portal_state/navigation_root_url"/>
+
+<li tal:repeat="document view/documents_paginated" class="animated fadeInRight">
+    <h3 tal:content="document/title"></h3>
+    <div class="doc-holder">
+        <a tal:attributes="href document/download_url">
+            <img tal:define="thumb document/display_thumb_url" tal:condition="thumb" tal:attributes="src thumb" alt="">
+            <img tal:define="thumb document/display_thumb_url" tal:condition="not: thumb"
+                 tal:attributes="src string:${static_root}/++resource++images/doc-holder.jpg" alt="">
+        </a>
+    </div>
+    <ul class="no-bullet icons-box">
+        <span tal:condition="document/wcc_user" tal:omit-tag="">
+            <li class="user-icon wcc-user">
+                <img tal:attributes="src string:${static_root}/++resource++images/wcc-user-icon.png" alt="">
+                <span class="access">User</span>
+            </li>
+        </span>
+        <span tal:condition="not: document/wcc_user" tal:omit-tag="">
+            <li class="user-icon unknown-user"><i class="fa fa-user"></i><span class="access">User</span></li>
+        </span>
+        <li class="heart-icon">
+            <a tal:attributes="data-votable document/UID"><i class="fa fa-heart"></i></a>
+        </li>
+        <li class="heart-count" tal:attributes="data-votes-count document/UID" tal:content="document/votes_count"></li>
+    </ul>
+    <p tal:content="document/description"></p>
+</li>

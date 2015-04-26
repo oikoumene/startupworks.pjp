@@ -1,0 +1,63 @@
+<metal:page define-macro="base">
+    <span tal:omit-tag="" tal:define="global static_root context/@@plone_portal_state/navigation_root_url"/>
+
+    <tal:doctype tal:replace="structure string:&lt;!doctype html&gt;" />
+    <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><html class="no-js"> <![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=yes, maximum-scale=1.0, minimum-scale=0.75">
+        <title tal:content="context/title"></title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" tal:attributes="href string:${static_root}/++resource++stylesheets/animate.css" />
+        <link rel="stylesheet" type="text/css" tal:attributes="href string:${static_root}/++resource++stylesheets/app.css" />
+        <link rel="stylesheet" type="text/css" tal:attributes="href string:${static_root}/++resource++slick/slick.css" />
+        <link rel="stylesheet" type="text/css" tal:attributes="href string:${static_root}/++resource++fancybox/jquery.fancybox.css" />
+        <link rel="icon" type="image/png" tal:attributes="href string:${static_root}/++resource++images/favicon.png" />
+        <link rel="shortcut icon" type="image/png" tal:attributes="href string:${static_root}/++resource++images/favicon.png" />
+        <script tal:attributes="src string:${static_root}/++resource++bower_components/modernizr/modernizr.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++bower_components/jquery/dist/jquery.min.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++js/libs/instagram.min.js"></script>
+    </head>
+    <body>
+        <metal:page define-slot="content">
+        </metal:page>
+
+        <div class="loading-overlay">
+            <div class="lo-inner">
+                <div class="width-control">
+                    <div class="loader">
+                        <img tal:attributes="src string:${static_root}/++resource++images/pjp-wave-reverse.png"
+                             class="loader-image" alt="">
+                    </div>
+                    <img tal:attributes="src string:${static_root}/++resource++images/pjp-text-logo.png"
+                         class="text-logo" alt="Pilgrimage of Justice and Peace">
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.paceOptions = {
+                target: '.loader'
+            };
+        </script>
+
+        <script tal:attributes="src string:${static_root}/++resource++bower_components/foundation/js/foundation.min.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++slick/slick.min.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++js/libs/jquery.cookie.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++js/libs/pace.min.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++fancybox/jquery.fancybox.pack.js"></script>
+        <span tal:attributes="data-root-api-url view/root_api_url"></span>
+        <script tal:attributes="src string:${static_root}/++resource++js/app.js"></script>
+        <script tal:attributes="src string:${static_root}/++resource++fancybox/helpers/jquery.fancybox-media.js"></script>
+
+    </body>
+    <!--[if lt IE 7]></html><![endif]-->
+    <!--[if IE 7]></html><![endif]-->
+    <!--[if IE 8]></html><![endif]-->
+    <!--[if gt IE 8]></html><![endif]-->
+
+</metal:page>
